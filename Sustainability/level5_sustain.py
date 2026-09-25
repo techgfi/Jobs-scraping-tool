@@ -158,7 +158,7 @@ except Exception as e:
 
 KEYWORD_RULES = [
     (r"\b(ehs|hse|she|environmental\s+health|occupational\s+health|safety\s+(?:officer|engineer|manager)|health\s+and\s+safety)\b", "EHS / HSE (Environmental Health & Safety)"),
-    (r"\b(reporting|gri|sasb|tcfd|csrd|esg\s+reporting|sustainability\s+reporting|audit|lca|life\s+cycle\s+assessment|esg\s+compliance)\b", "ESG Compliance & Sustainability Reporting"),
+    (r"\b(reporting|gri|sasb|tcfd|csrd|esg\s+reporting|sustainability\s+reporting|audit|lca|life\s+cycle\s+assessment|esg\s+compliance)\b", "Environmental, ESG & Sustainability"),
     (r"\b(climate\s+data|esg\s+data|esg\s+(?:analyst|analytics)|sustainability\s+(?:analyst|data)|climate\s+analytics|gis|geospatial)\b", "Climate Data & ESG Analytics"),
     (r"\b(solar|pv|photovoltaic|rooftop|distributed\s+energy|microgrid)\b", "Solar & Distributed Energy"),
     (r"\b(renewable|clean\s*tech|wind|geothermal|biomass|bess|battery\s+storage|ev\s+|electric\s+vehicle)\b", "Renewable Energy & Clean Tech"),
@@ -170,11 +170,11 @@ KEYWORD_RULES = [
     (r"\b(carbon|ghg|greenhouse\s+gas|net\s*zero|decarbonization|emissions|climate\s+action)\b", "Climate & Carbon Management"),
     (r"\b(education|skilling|training|capacity\s+building|climate\s+literacy|curriculum)\b", "Climate Education & Skilling"),
     (r"\b(waste\s+management|circular\s+economy|pollution|remediation|environmental\s+(?:scientist|consultant|manager|planner))\b", "Environmental Management"),
-    (r"\b(sustainability|esg|environmental\s+social|corporate\s+responsibility|csr)\b", "Sustainability & ESG"),
+    (r"\b(sustainability|esg|environmental\s+social|corporate\s+responsibility|csr)\b", "Environmental, ESG & Sustainability"),
 ]
 
 CATEGORIES = [
-    "Sustainability & ESG",
+    "Environmental, ESG & Sustainability",
     "Climate & Carbon Management",
     "Renewable Energy & Clean Tech",
     "Environmental Management",
@@ -182,7 +182,6 @@ CATEGORIES = [
     "Ecology & Biodiversity",
     "Water & Wastewater Management",
     "Climate Data & ESG Analytics",
-    "ESG Compliance & Sustainability Reporting",
     "Green Engineering & Sustainable Infrastructure",
     "Solar & Distributed Energy",
     "Climate Finance & Impact Investing",
@@ -195,7 +194,7 @@ CATEGORY_EMBEDDINGS = embedder.encode(CATEGORIES, convert_to_tensor=True)
 
 def map_department(text):
     if pd.isna(text) or not str(text).strip():
-        return "Sustainability & ESG"
+        return "Environmental, ESG & Sustainability"
 
     text_clean = str(text).strip().lower()
 
@@ -210,7 +209,7 @@ def map_department(text):
     if scores[idx].item() >= 0.30:
         return CATEGORIES[idx]
 
-    return "Sustainability & ESG"
+    return "Environmental, ESG & Sustainability"
 
 
 # ==================================================
